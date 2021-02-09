@@ -14,6 +14,10 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [page, setPage] = useState(PAGE_MIN)
 
+
+  useEffect(() => {
+    handleSearch(page);
+  },[page,searchTerm])
  
   const handleSearch = async (searchPage = null) => {
     let searchString
@@ -38,7 +42,7 @@ function App() {
 
     const newPage = direction === DOWN ? page - 1 : page + 1
     setPage(newPage)
-    await handleSearch(newPage)
+   // await handleSearch(newPage)
   }
 
   const handleUp = async () => {
@@ -51,7 +55,7 @@ function App() {
 
   const handleKeypress = async e => {
     if (e.charCode === 13) {
-      await handleSearch()
+  //    await handleSearch()
     }
   }
 
@@ -69,7 +73,7 @@ function App() {
           onChange={handleSearchTermChange}
           onKeyPress={handleKeypress}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button /* onClick={handleSearch} */>Search</button>
       </div>
       {!searchResult ? (
         <p>No results yet</p>
